@@ -1,9 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using RealCat.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddDbContext<CatDbContext>(options =>
+{
+    options.UseInMemoryDatabase("CatDb");
+});
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
