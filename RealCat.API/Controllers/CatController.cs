@@ -1,12 +1,33 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RealCat.API.Helpers;
+using RealCat.API.Services;
 
 namespace RealCat.API.Controllers
 {
-    public class CatController : Controller
+    [ApiController]
+    [Route("api/[controller]/[action]")]
+    public class CatController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly ICatService _catService;
+        private const string ContentType = "image/jpeg";
+
+        public CatController(ICatService catService)
         {
-            return View();
+            _catService = catService;
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            return File(await _catService.GetCat(), ContentType);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> GetUpsideDownCat()
+        {
+            return File(await _catService.GetUpsideDownCat(), ContentType);
         }
     }
 }

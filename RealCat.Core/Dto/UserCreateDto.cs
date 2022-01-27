@@ -2,12 +2,8 @@
 
 namespace RealCat.Core.Dto
 {
-    internal class UserCreateDto
+    public class UserCreateDto
     {
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
-
         [Required]
         [StringLength(20, MinimumLength = 3, ErrorMessage = "Username must be between 3 and 20 characters.")]
         public string Username { get; set; }
