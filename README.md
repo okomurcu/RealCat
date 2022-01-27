@@ -9,3 +9,6 @@ In-memory database used in this application, RealCat.API solution can be started
 
 ## How to test API methods
 To test API methods easily, RealCat_Api_Collection.json file can be imported into Postman 
+
+
+*** API Docunmatation will be updated
