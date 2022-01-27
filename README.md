@@ -5,7 +5,7 @@ The project is a .Net Core Web API application and it is developed using C# .Net
 In-memory database used in this application, RealCat.API solution can be started directly
 
 ## API Docunmatation
-![image](https://user-images.githubusercontent.com/98488371/151281680-354829a7-3fa1-435d-85b0-7338a3e2fd87.png)
+![image](https://user-images.githubusercontent.com/98488371/151309138-d4417482-447b-4ff6-b2d9-609d7c216f97.png)
 
 ## How to test API methods
 To test API methods easily, RealCat_Api_Collection.json file can be imported into Postman 
