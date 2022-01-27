@@ -12,7 +12,6 @@ builder.Services.AddDbContext<CatDbContext>(options =>
 
 builder.Services.AddControllers();
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
-builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICatService, CatService>();
 builder.Services.AddEndpointsApiExplorer();

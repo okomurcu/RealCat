@@ -1,4 +1,5 @@
-﻿using RealCat.Core.Dto;
+﻿using Microsoft.EntityFrameworkCore;
+using RealCat.Core.Dto;
 using RealCat.Core.Model;
 using RealCat.Infrastructure;
 
@@ -21,6 +22,11 @@ namespace RealCat.API.Repository
         public User? GetById(int id)
         {
             return _context.Users.FirstOrDefault(x => x.Id == id);
+        }
+
+        public Task<User?> GetByUsername(string username)
+        {
+            return _context.Users.FirstOrDefaultAsync(x => x.Username.Equals(username));
         }
 
         public User Create(UserCreateDto userRequest)

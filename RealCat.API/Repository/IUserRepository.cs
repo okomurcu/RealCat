@@ -9,6 +9,8 @@ namespace RealCat.API.Repository
 
         User? GetById(int id);
 
+        Task<User?> GetByUsername(string userName);
+
         User Create(UserCreateDto user);
 
     }

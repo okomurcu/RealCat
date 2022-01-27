@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RealCat.API.Helpers;
 using RealCat.API.Repository;
-using RealCat.API.Services;
 using RealCat.Core.Model;
 using RealCat.Core.Dto;
 
@@ -11,12 +10,10 @@ namespace RealCat.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly ILoginService _loginService;
         private readonly IUserRepository _userRepository;
 
-        public UserController(IUserRepository userRepository, ILoginService loginService)
+        public UserController(IUserRepository userRepository)
         {
-            _loginService = loginService;
             _userRepository = userRepository;
         }
 
@@ -24,7 +21,7 @@ namespace RealCat.API.Controllers
         [HttpGet]
         public async Task<ActionResult<User>> Get(string username)
         {
-            var user = await _loginService.GetUser(username);
+            var user = await _userRepository.GetByUsername(username);
 
             if (user == null)
                 return NotFound("User cannot found");
@@ -47,13 +44,13 @@ namespace RealCat.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(UserCreateDto request)
         {
-            var user = await _loginService.GetUser(request.Username);
+            var user = await _userRepository.GetByUsername(request.Username);
             if (user != null)
                 return BadRequest("Username already exists");
 
             _userRepository.Create(request);
 
-            return Ok();
+            return Ok("User is created");
         }
     }
 }
