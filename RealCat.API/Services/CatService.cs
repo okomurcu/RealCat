@@ -13,14 +13,14 @@ namespace RealCat.API.Services
             _providerUrl = appSettings.Value.ServiceProvider + "cat";
         }
 
-        public async Task<byte[]> GetCat()
+        public async Task<byte[]> Get()
         {
             var image = await GetAsync(_providerUrl);
 
             return ConvertToByteArray(image);
         }
 
-        public async Task<byte[]> GetUpsideDownCat()
+        public async Task<byte[]> GetUpsideDown()
         {
             var image = await GetAsync(_providerUrl);
             

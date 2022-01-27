@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using RealCat.API.Helpers;
 using RealCat.API.Repository;
 using RealCat.API.Services;
 using RealCat.Core.Model;
 using RealCat.Core.Dto;
-using RealCat.Core.ViewModel;
 
 namespace RealCat.API.Controllers
 {
@@ -13,27 +11,13 @@ namespace RealCat.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly AppSettings _appSettings;
         private readonly ILoginService _loginService;
-        private readonly IUserRepository _userService;
+        private readonly IUserRepository _userRepository;
 
-        public UserController(IOptions<AppSettings> appSettings,
-            ILoginService loginService,
-            IUserRepository userService)
+        public UserController(IUserRepository userRepository, ILoginService loginService)
         {
-            _appSettings = appSettings.Value;
             _loginService = loginService;
-            _userService = userService;
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> GetToken(AuthenticateRequest authenticateRequest)
-        {
-            var user = await _loginService.GetUser(authenticateRequest.Username);
-            if (user == null) return null;
-
-            var authenticateResponse = new AuthenticateResponse(AuthorizeHelper.GenerateToken(user, _appSettings));
-            return Ok(authenticateResponse);
+            _userRepository = userRepository;
         }
 
         [Authorize]
@@ -52,7 +36,7 @@ namespace RealCat.API.Controllers
         [HttpGet]
         public async Task<ActionResult<User>> GetAll()
         {
-            var userList = _userService.GetAll();
+            var userList = _userRepository.GetAll();
 
             if (userList == null)
                 return NotFound("User cannot found");
@@ -67,22 +51,9 @@ namespace RealCat.API.Controllers
             if (user != null)
                 return BadRequest("Username already exists");
 
-            _userService.Create(request);
+            _userRepository.Create(request);
 
-            return StatusCode(201);
-        }
-
-        [Authorize]
-        [HttpGet]
-        public async Task<ActionResult<User>> Logout(string username)
-        {
-            var user = await _loginService.GetUser(username);
-
-            //TODO: Logout logic will be implemented
-            if (user == null)
-                return NotFound("User cannot be found");
-
-            return Ok($"username: {user} logout successful");
+            return Ok();
         }
     }
 }

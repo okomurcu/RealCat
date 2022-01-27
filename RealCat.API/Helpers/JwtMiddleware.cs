@@ -17,17 +17,17 @@ public class JwtMiddleware
         _appSettings = appSettings.Value;
     }
 
-    public async Task Invoke(HttpContext context, IUserRepository userService)
+    public async Task Invoke(HttpContext context, IUserRepository userRepository)
     {
         var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
         if (token != null)
-            AttachUserToContext(context, userService, token);
+            AttachUserToContext(context, userRepository, token);
 
         await _next(context);
     }
 
-    private void AttachUserToContext(HttpContext context, IUserRepository userService, string token)
+    private void AttachUserToContext(HttpContext context, IUserRepository userRepository, string token)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_appSettings.SecretKey);
@@ -43,6 +43,6 @@ public class JwtMiddleware
         var jwtToken = (JwtSecurityToken)validatedToken;
         var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
 
-        context.Items["User"] = userService.GetById(userId);
+        context.Items["User"] = userRepository.GetById(userId);
     }
 }

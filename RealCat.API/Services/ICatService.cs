@@ -2,8 +2,8 @@
 {
     public interface ICatService
     {
-        Task<byte[]> GetCat();
+        Task<byte[]> Get();
 
-        Task<byte[]> GetUpsideDownCat();
+        Task<byte[]> GetUpsideDown();
     }
 }

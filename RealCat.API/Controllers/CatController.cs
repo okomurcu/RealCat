@@ -20,14 +20,14 @@ namespace RealCat.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return File(await _catService.GetCat(), ContentType);
+            return File(await _catService.Get(), ContentType);
         }
 
         [Authorize]
         [HttpGet]
-        public async Task<IActionResult> GetUpsideDownCat()
+        public async Task<IActionResult> GetUpsideDown()
         {
-            return File(await _catService.GetUpsideDownCat(), ContentType);
+            return File(await _catService.GetUpsideDown(), ContentType);
         }
     }
 }
