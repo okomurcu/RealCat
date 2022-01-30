@@ -1,29 +1,20 @@
 {
 	"info": {
-		"_postman_id": "12598f13-a6cf-49bc-82de-9c91205b73cb",
+		"_postman_id": "59619c35-3d6c-4579-ab92-d6d23385e60d",
 		"name": "RealCat",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Authorization",
+			"name": "cats",
 			"item": [
 				{
-					"name": "GenerateToken",
+					"name": "get",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"Username\" : \"admin\",\r\n    \"Password\" : \"admin\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "https://localhost:7178/api/authorization/generatetoken",
+							"raw": "https://localhost:7178/api/cats/get",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -31,8 +22,108 @@
 							"port": "7178",
 							"path": [
 								"api",
-								"authorization",
-								"generatetoken"
+								"cats",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upside_down",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7178/api/cats/upside_down",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7178",
+							"path": [
+								"api",
+								"cats",
+								"upside_down"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "custom_rotation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7178/api/cats/filter?imageFilter=negative",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7178",
+							"path": [
+								"api",
+								"cats",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "imageFilter",
+									"value": "negative"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "negative",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7178/api/cats/upside_down",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7178",
+							"path": [
+								"api",
+								"cats",
+								"upside_down"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "width_and_height",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7178/api/cats/width_and_height?width=256&height=256",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7178",
+							"path": [
+								"api",
+								"cats",
+								"width_and_height"
+							],
+							"query": [
+								{
+									"key": "width",
+									"value": "256"
+								},
+								{
+									"key": "height",
+									"value": "256"
+								}
 							]
 						}
 					},
@@ -41,36 +132,16 @@
 			]
 		},
 		{
-			"name": "User",
+			"name": "token",
 			"item": [
 				{
-					"name": "Get",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "create",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDMyNDA5MjMsImV4cCI6MTY0Mzg0NTcyMywiaWF0IjoxNjQzMjQwOTIzfQ.rXcEu1TVRryFuf4cFODxtkDW_9TxVvYu0xgn2CJxNK0",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
+						"method": "POST",
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"admin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -78,7 +149,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7178/api/user/get?username=admin",
+							"raw": "https://localhost:7178/api/tokens/create",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -86,7 +157,33 @@
 							"port": "7178",
 							"path": [
 								"api",
-								"user",
+								"tokens",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7178/api/users/get?username=admin",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7178",
+							"path": [
+								"api",
+								"users",
 								"get"
 							],
 							"query": [
@@ -100,29 +197,12 @@
 					"response": []
 				},
 				{
-					"name": "GetAll",
+					"name": "get_all",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDMyNDA5MjMsImV4cCI6MTY0Mzg0NTcyMywiaWF0IjoxNjQzMjQwOTIzfQ.rXcEu1TVRryFuf4cFODxtkDW_9TxVvYu0xgn2CJxNK0",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
-						"header": [
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
+						"header": [],
 						"url": {
-							"raw": "https://localhost:7178/api/user/getall",
+							"raw": "https://localhost:7178/api/users/get_all",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -130,21 +210,21 @@
 							"port": "7178",
 							"path": [
 								"api",
-								"user",
-								"getall"
+								"users",
+								"get_all"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Create",
+					"name": "create",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Username\" : \"test\",\r\n    \"Password\" : \"test\"\r\n}",
+							"raw": "{\r\n  \"username\": \"user2\",\r\n  \"password\": \"user2\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -152,7 +232,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7178/api/user/create",
+							"raw": "https://localhost:7178/api/users/create",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -160,7 +240,7 @@
 							"port": "7178",
 							"path": [
 								"api",
-								"user",
+								"users",
 								"create"
 							]
 						}
@@ -168,96 +248,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "Cat",
-			"item": [
-				{
-					"name": "Get",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDMyNjU4NjUsImV4cCI6MTY0MzI2NjQ2NSwiaWF0IjoxNjQzMjY1ODY1fQ.01CiVuOPKJr5XVMTx2AsNEgJU1HB5ijBO7l4Svjb3OM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://localhost:7178/api/cat/Get",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7178",
-							"path": [
-								"api",
-								"cat",
-								"Get"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GetUpsideDown",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDMyNjU4NjUsImV4cCI6MTY0MzI2NjQ2NSwiaWF0IjoxNjQzMjY1ODY1fQ.01CiVuOPKJr5XVMTx2AsNEgJU1HB5ijBO7l4Svjb3OM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://localhost:7178/api/cat/GetUpsideDown",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7178",
-							"path": [
-								"api",
-								"cat",
-								"GetUpsideDown"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	],
-	"auth": {
-		"type": "bearer"
-	},
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
 		}
 	]
 }
