@@ -35,4 +35,8 @@ predefined admin user can be used for token creation operation:
 after token is created, it can be reused in later calls.
 ![image](https://user-images.githubusercontent.com/98488371/151708003-59443174-0896-4b07-b49f-45b9feff02be.png)
 
+## How the project is structured
 
+Due to the project's scale and time limit, repository pattern is implemented in the project.\
+Project has Core, Infrastructure and API layers.\
+For authentication JWT (JSON Web Token) is used.
