@@ -7,7 +7,7 @@ In-memory database used in this application, RealCat.API solution can be started
 ## API Docunmatation
 Endpoints and explanations:
 
-**/api/tokens/create** will create a token for the given user
+**api/tokens/create** will create a token for the given user
 
 **api/cats/get** will return a random cat image\
 **api/cats/upside_down** will return a upside down flipped cat image\
