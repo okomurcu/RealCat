@@ -32,6 +32,16 @@
 				{
 					"name": "upside_down",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDM1NTk4NzgsImV4cCI6MTY0MzU2MDQ3OCwiaWF0IjoxNjQzNTU5ODc4fQ._-tcW0WJQvDV35eah_DN2qYDIPEKfwyua6b4dJeU71k",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -56,6 +66,43 @@
 						"method": "GET",
 						"header": [],
 						"url": {
+							"raw": "https://localhost:7178/api/cats/custom_rotation?rotation=90",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7178",
+							"path": [
+								"api",
+								"cats",
+								"custom_rotation"
+							],
+							"query": [
+								{
+									"key": "rotation",
+									"value": "90"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "negative",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDM1NjE3NDYsImV4cCI6MTY0MzU2MjM0NiwiaWF0IjoxNjQzNTYxNzQ2fQ.BmtlsGLWRUemMYxfNRboYD01BpCZXi25Es1XMSf4lo4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
 							"raw": "https://localhost:7178/api/cats/filter?imageFilter=negative",
 							"protocol": "https",
 							"host": [
@@ -72,27 +119,6 @@
 									"key": "imageFilter",
 									"value": "negative"
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "negative",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://localhost:7178/api/cats/upside_down",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7178",
-							"path": [
-								"api",
-								"cats",
-								"upside_down"
 							]
 						}
 					},
