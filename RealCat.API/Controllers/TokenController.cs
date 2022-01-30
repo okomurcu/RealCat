@@ -7,20 +7,20 @@ using RealCat.Core.ViewModel;
 namespace RealCat.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]/[action]")]
-    public class AuthorizationController : ControllerBase
+    [Route("api/tokens")]
+    public class TokenController : ControllerBase
     {
         private readonly AppSettings _appSettings;
         private readonly IUserRepository _userRepository;
 
-        public AuthorizationController(IOptions<AppSettings> appSettings, IUserRepository userRepository)
+        public TokenController(IOptions<AppSettings> appSettings, IUserRepository userRepository)
         {
             _appSettings = appSettings.Value;
             _userRepository = userRepository;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> GenerateToken(AuthenticateRequest authenticateRequest)
+        [HttpPost("create")]
+        public async Task<IActionResult> Create(AuthenticateRequest authenticateRequest)
         {
             var user = await _userRepository.GetByUsername(authenticateRequest.Username);
             if (user == null) return null;

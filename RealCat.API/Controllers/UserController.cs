@@ -6,7 +6,7 @@ using RealCat.Core.Dto;
 
 namespace RealCat.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/users")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -18,7 +18,7 @@ namespace RealCat.API.Controllers
         }
 
         [Authorize]
-        [HttpGet]
+        [HttpGet("get")]
         public async Task<ActionResult<User>> Get(string username)
         {
             var user = await _userRepository.GetByUsername(username);
@@ -30,7 +30,7 @@ namespace RealCat.API.Controllers
         }
 
         [Authorize]
-        [HttpGet]
+        [HttpGet("get_all")]
         public async Task<ActionResult<User>> GetAll()
         {
             var userList = _userRepository.GetAll();
@@ -41,7 +41,7 @@ namespace RealCat.API.Controllers
             return Ok(userList);
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<IActionResult> Create(UserCreateDto request)
         {
             var user = await _userRepository.GetByUsername(request.Username);
